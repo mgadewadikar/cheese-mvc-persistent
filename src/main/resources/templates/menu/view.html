@@ -1,1 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
 
+    <body class="container">
+
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <p th:unless="${cheeses} and ${cheeses.size()}">No cheeses in this menu </p>
+        <ul th:each="cheese : ${menu.cheeses}">
+            <!-- Each menu in the list should link to a URL of the form /menu/view/5,
+            where 5 could be the ID of any menu. -->
+            <li th:text="${cheese.name}"></li>
+        </ul>
+        <!-- a link to the URL /menu/add-item FORM -->
+        <p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
+    </body>
+</html>
